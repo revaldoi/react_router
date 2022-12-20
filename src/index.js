@@ -5,13 +5,16 @@ import App from './App';
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Expenses from './container/expenses';
 import Invoice from './container/invoice';
+import Bills from './container/bills';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="/invoice" element={<Invoice />} />
+          <Route path="/invoice" element={<Invoice />} >
+            <Route path=':invoiceid' element={<Bills />} />
+          </Route>
           <Route path="/expenses" element={<Expenses />} />
         </Route>
       </Routes>

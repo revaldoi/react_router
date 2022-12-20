@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import {Link, Outlet} from 'react-router-dom';
 // import { getInvoices } from './data';
+
 
 class Invoice extends Component{
     state={
@@ -21,19 +22,30 @@ class Invoice extends Component{
         this.getDataInvoice()
     }
 
+    // ambilInvoice(number){
+    //     let invoices = this.state.invoice
+    //     console.log(invoices)
+    //     return invoices.find(invoice => invoice.number === number)
+    // }
+
     render(){
         console.log(this.state.invoice)
         return(
-            <main>
-                <div>
-                    {this.state.invoice.map(invoice => (
-                        <Link className='bg-gray-200' 
-                            to={`/invoices/${invoice.number}`}
-                            key={invoice.number}>
-                        {invoice.name}</Link>))
-                    }
-                </div>
-            </main>
+            <Fragment>
+                <main>
+                    <div>
+                        {this.state.invoice.map(invoice => (
+                            <Link className='bg-gray-200' 
+                                to={`/invoice/${invoice.number}`}
+                                key={invoice.number}>
+                            {invoice.name}</Link>
+                            ))
+                        }
+                    </div>
+                </main>
+                <Outlet></Outlet>
+            </Fragment>
+
         )
     }
 }
